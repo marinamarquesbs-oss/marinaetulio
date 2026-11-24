@@ -15,7 +15,7 @@ window.CASA = {
     local: "Nossa casa nova",
     endereco: "xxxxxx",    // [PREENCHER] endereço completo (aparece no site)
     mapsQuery: "",         // [PREENCHER] texto pra busca no Google Maps (normalmente o endereço)
-    brincadeiras: "Vai ter brincadeira de chá, sim. Venha preparado(a) pra rir um pouco.",
+    brincadeiras: "Claro que tem! Vai ter brincadeira de chá, com prenda, risada e muita torcida. Só pedimos uma coisa: deixa a vergonha do lado de fora da porta.",
     prazoConfirmacao: "2027-02-03" // [PREENCHER] ex.: "2027-01-10". Depois dessa data o formulário fecha.
   },
 
