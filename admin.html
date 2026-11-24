@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Painel da Casa</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz@6..96&family=Manrope:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#fbf4e4;--papel:#fffdf7;--tinta:#2b211c;--tinta-2:#6e625a;--linha:#e9dcc2;--ameixa:#C42B34;--ok:#2f7a4f;--nao:#a23b4a;--manteiga:#FCE9AB}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--tinta);font:15px/1.5 "Manrope",system-ui,sans-serif;padding:24px max(16px,env(safe-area-inset-left,0px)) 64px}
+.wrap{max-width:1000px;margin:0 auto}
+h1{font:400 36px "Bodoni Moda",Georgia,serif;margin:0 0 4px}
+.sub{color:var(--tinta-2);margin:0 0 20px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{font:600 14px inherit;font-family:inherit;border:1px solid var(--linha);background:var(--papel);color:var(--tinta);border-radius:999px;padding:8px 14px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:18px;margin-bottom:14px}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.nums div{background:var(--papel);border:1px solid var(--linha);border-radius:14px;padding:16px}
+.nums b{display:block;font:400 34px "Bodoni Moda",serif;font-variant-numeric:tabular-nums}
+.nums span{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--tinta-2)}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--tinta-2)}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;background:var(--bg)}
+.pill.sim{background:#d7efdf;color:var(--ok)}.pill.nao{background:#f6d9dd;color:var(--nao)}.pill.pend{background:var(--manteiga)}
+button.b,a.b{font:600 13px "Manrope",sans-serif;border:0;border-radius:999px;padding:8px 14px;background:var(--ameixa);color:#fff;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap}
+.b.g{background:transparent;color:var(--ameixa);box-shadow:inset 0 0 0 1.5px var(--ameixa)}
+.b.r{background:var(--nao)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.row > label{flex:1;min-width:140px}
+label{display:block;font-size:13px;font-weight:600}
+input,select,textarea{width:100%;font:inherit;border:1px solid var(--linha);border-radius:10px;padding:9px 11px;margin-top:4px;background:#fff;color:var(--tinta)}
+.recado{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;border-bottom:1px solid var(--linha);padding:12px 0}
+.recado p{margin:4px 0}.recado img{max-height:120px;border-radius:8px}
+.msg{color:var(--ameixa);font-weight:600;min-height:1.4em}
+.login{max-width:360px;margin:12vh auto}
+.muted{color:var(--tinta-2);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <form class="card login" id="login">
+    <h1>Painel da casa</h1>
+    <p class="sub">Só pra Marina e Marco Túlio.</p>
+    <label for="senha">Senha</label>
+    <input id="senha" type="password" autocomplete="current-password" required>
+    <p class="msg" id="loginMsg"></p>
+    <button class="b" type="submit">Entrar</button>
+  </form>
+
+  <div id="app" hidden>
+    <h1>Painel da casa</h1>
+    <p class="sub" id="resumo"></p>
+    <div class="tabs" role="tablist" id="tabs">
+      <button type="button" data-t="convidados" aria-selected="true">Convidados</button>
+      <button type="button" data-t="confirmacoes" aria-selected="false">Confirmações</button>
+      <button type="button" data-t="recados" aria-selected="false">Recados</button>
+      <button type="button" data-t="presentes" aria-selected="false">Presentes</button>
+      <button type="button" data-t="conselhos" aria-selected="false">Conselhos</button>
+      <button type="button" data-t="capsula" aria-selected="false">Cápsula</button>
+      <button type="button" data-t="lembretes" aria-selected="false">Lembretes</button>
+    </div>
+    <div id="view"></div>
+  </div>
+</div>
+<script src="config.js" charset="utf-8"></script>
+<script>
+(function(){
+const C=window.CASA||{}, API=C.API_URL;
+const $=s=>document.querySelector(s);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+let senha="", dados=null, aba="convidados";
+try{senha=sessionStorage.getItem("casa-senha")||""}catch(e){}
+async function call(op,extra){
+  if(!API) throw new Error("Falta preencher API_URL no config.js.");
+  const r=await fetch(API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({action:"admin",senha,op},extra||{}))});
+  const j=await r.json(); if(!j.ok) throw new Error(j.erro||"Erro"); return j;
+}
+async function recarregar(){ dados=await call("tudo"); $("#resumo").textContent=dados.resumo; render(); }
+$("#login").addEventListener("submit",async e=>{
+  e.preventDefault(); senha=$("#senha").value; $("#loginMsg").textContent="Entrando…";
+  try{ await recarregar(); try{sessionStorage.setItem("casa-senha",senha)}catch(e){} $("#login").hidden=true; $("#app").hidden=false; }
+  catch(err){ $("#loginMsg").textContent=err.message; }
+});
+if(senha){ recarregar().then(()=>{$("#login").hidden=true;$("#app").hidden=false}).catch(()=>{}); }
+document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>{aba=b.dataset.t;document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-selected",x===b?"true":"false"));render()}));
+
+const zap=(tel,txt)=>"https://wa.me/"+(String(tel).replace(/\D/g,"").replace(/^(?!55)/,"55"))+"?text="+encodeURIComponent(txt);
+const site=()=> (dados.site||location.href.replace(/admin\.html.*$/,"")).replace(/\/$/,"");
+const link=c=>site()+"/?c="+encodeURIComponent(c);
+const nomeCasal=()=>(C.casal?C.casal.nome1+" e "+C.casal.nome2:"");
+function tabela(cols,rows){const w=el("div","tbl"),t=el("table"),h=el("tr");cols.forEach(c=>h.appendChild(el("th","",c)));t.appendChild(h);rows.forEach(r=>{const tr=el("tr");r.forEach(c=>{const td=el("td");if(c instanceof Node)td.appendChild(c);else td.textContent=c==null?"":c;tr.appendChild(td)});t.appendChild(tr)});w.appendChild(t);return w}
+function btn(txt,cls,fn){const b=el("button","b "+(cls||""),txt);b.type="button";b.addEventListener("click",async()=>{b.disabled=true;try{await fn()}catch(e){alertMsg(e.message)}b.disabled=false});return b}
+function a(txt,href,cls){const x=el("a","b "+(cls||""),txt);x.href=href;x.target="_blank";x.rel="noopener";return x}
+function alertMsg(m){$("#resumo").textContent=m}
+function pill(s){const p=el("span","pill "+(s==="sim"?"sim":s==="nao"||s==="não"?"nao":"pend"),s==="sim"?"vai":s==="nao"||s==="não"?"não vai":"sem resposta");return p}
+const fmt=d=>d?new Date(d).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}):"";
+
+function render(){
+  const v=$("#view"); v.textContent="";
+  if(aba==="convidados"){
+    const f=el("form","card"); f.appendChild(el("h3","","Adicionar convidado"));
+    const row=el("div","row");
+    const mk=(lbl,id,type)=>{const l=el("label","",lbl);const i=el("input");i.id=id;if(type)i.type=type;l.appendChild(i);row.appendChild(l);return i};
+    const n=mk("Nome","g-nome"),t=mk("WhatsApp (com DDD)","g-tel"),m=mk("Acompanhantes permitidos","g-max","number");m.min=0;m.max=10;m.value=1;
+    const s=el("button","b","Adicionar");s.type="submit";row.appendChild(s);f.appendChild(row);
+    f.addEventListener("submit",async e=>{e.preventDefault();if(!n.value.trim())return;s.disabled=true;try{await call("convidado",{nome:n.value,telefone:t.value,max:m.value});await recarregar()}catch(err){alertMsg(err.message)}s.disabled=false});
+    v.appendChild(f);
+    const c=el("div","card");c.appendChild(el("p","muted","Cada convidado tem um link pessoal. Toque em \"Convidar\" pra abrir o WhatsApp com a mensagem pronta."));
+    c.appendChild(tabela(["Nome","Acomp.","Status","Link",""],dados.convidados.map(g=>{
+      const acts=el("div","row");
+      acts.append(a("Convidar",zap(g.telefone,"Oi, "+String(g.nome).split(" ")[0]+"! "+nomeCasal()+" vão fazer o chá de casa nova e você é muito bem-vindo(a). Todos os detalhes e a confirmação estão aqui: "+link(g.codigo))),
+        btn("Copiar link","g",async()=>{try{await navigator.clipboard.writeText(link(g.codigo));alertMsg("Link copiado.")}catch(e){prompt("Copie:",link(g.codigo))}}),
+        btn("Apagar","r",async()=>{if(confirm("Apagar "+g.nome+"?")){await call("apagarConvidado",{codigo:g.codigo});await recarregar()}}));
+      return [g.nome,g.max_acompanhantes,pill(g.status),el("code","",g.codigo),acts]})));
+    v.appendChild(c);
+  }
+  if(aba==="confirmacoes"){
+    const c=el("div","card");c.appendChild(el("p","muted","Todas as respostas, da mais nova pra mais antiga. Também estão na planilha, aba Confirmacoes."));
+    c.appendChild(tabela(["Quando","Nome","Telefone","Vai?","Acompanhantes","Pessoas"],dados.confirmacoes.slice().reverse().map(r=>[fmt(r.data),r.nome,r.telefone,pill(r.vai==="sim"?"sim":"nao"),r.acompanhantes,r.total_pessoas])));
+    v.appendChild(c);
+  }
+  if(aba==="recados"){
+    const c=el("div","card");
+    if(!dados.recados.length)c.appendChild(el("p","muted","Nenhum recado ainda."));
+    dados.recados.forEach(r=>{
+      const d=el("div","recado"),t=el("div");
+      t.append(pill(r.status==="aprovado"?"sim":r.status==="recusado"?"nao":"pend"));
+      t.lastChild.textContent=r.status;
+      t.append(el("p","",r.texto),el("p","muted",r.nome+" · "+fmt(r.data)+" · ♥ "+(r.coracoes||0)));
+      if(r.imagem&&/^https:\/\//.test(r.imagem)){const i=el("img");i.src=r.imagem;i.alt="";t.appendChild(i)}
+      const acts=el("div","row");
+      if(r.status!=="aprovado")acts.appendChild(btn("Aprovar","",async()=>{await call("moderar",{id:r.id,status:"aprovado"});await recarregar()}));
+      if(r.status!=="recusado")acts.appendChild(btn("Esconder","g",async()=>{await call("moderar",{id:r.id,status:"recusado"});await recarregar()}));
+      acts.appendChild(btn("Apagar","r",async()=>{if(confirm("Apagar de vez?")){await call("moderar",{id:r.id,status:"apagar"});await recarregar()}}));
+      d.append(t,acts);c.appendChild(d);
+    });
+    v.appendChild(c);
+  }
+  if(aba==="presentes"){
+    const f=el("form","card");f.appendChild(el("h3","","Adicionar ou editar presente"));
+    const row=el("div","row"),fields={};
+    [["nome","Nome"],["descricao","Descrição"],["valor","Valor (R$)","number"],["link","Link da loja (https://…)"],["linkCartao","Link do cartão (opcional)"],["categoria","Cômodo (ex.: Cozinha)"]].forEach(([k,l,t])=>{const lb=el("label","",l),i=el("input");if(t)i.type=t;i.id="p-"+k;lb.appendChild(i);row.appendChild(lb);fields[k]=i});
+    const tl=el("label","","Tipo"),ts=el("select");ts.id="p-tipo";[["item","Item (reserva única)"],["cota","Cota (Pix, várias pessoas)"]].forEach(([v1,t1])=>{const o=el("option","",t1);o.value=v1;ts.appendChild(o)});tl.appendChild(ts);row.appendChild(tl);
+    let editId="";
+    const s=el("button","b","Salvar");s.type="submit";row.appendChild(s);f.appendChild(row);
+    f.addEventListener("submit",async e=>{e.preventDefault();if(!fields.nome.value.trim())return;s.disabled=true;try{await call("presente",{presente:{id:editId,tipo:ts.value,nome:fields.nome.value,descricao:fields.descricao.value,valor:fields.valor.value,link:fields.link.value,linkCartao:fields.linkCartao.value,categoria:fields.categoria.value}});await recarregar()}catch(err){alertMsg(err.message)}s.disabled=false});
+    v.appendChild(f);
+    const c=el("div","card");
+    c.appendChild(tabela(["Presente","Tipo","Valor","Reservado por",""],dados.presentes.map(p=>{
+      const acts=el("div","row");
+      acts.appendChild(btn("Editar","g",async()=>{editId=String(p.id);fields.nome.value=p.nome;fields.descricao.value=p.descricao||"";fields.valor.value=p.valor||"";fields.link.value=p.link||"";fields.linkCartao.value=p.link_cartao||"";fields.categoria.value=p.categoria||"";ts.value=p.tipo==="cota"?"cota":"item";s.textContent="Salvar alterações";f.scrollIntoView({behavior:"smooth"})}));
+      if(p.reservado_por)acts.appendChild(btn("Liberar","g",async()=>{if(confirm("Liberar esse presente de novo?")){await call("liberarPresente",{id:p.id});await recarregar()}}));
+      acts.appendChild(btn("Apagar","r",async()=>{if(confirm("Apagar "+p.nome+"?")){await call("apagarPresente",{id:p.id});await recarregar()}}));
+      const quem=p.tipo==="cota"?(p.cliques_pix?p.cliques_pix+" abriram o Pix":""):(p.reservado_por?p.reservado_por+" "+(p.telefone||""):"");
+      return [p.nome,p.tipo,Number(p.valor||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"}),quem,acts]})));
+    v.appendChild(c);
+  }
+  if(aba==="conselhos"){
+    const c=el("div","card");
+    if(!dados.conselhos.length)c.appendChild(el("p","muted","Nenhum conselho ainda."));
+    dados.conselhos.forEach(r=>{
+      const d=el("div","recado"),t=el("div");
+      const pl=pill(r.status==="aprovado"?"sim":r.status==="recusado"?"nao":"pend");pl.textContent=r.status;t.appendChild(pl);
+      t.append(el("p","",r.texto),el("p","muted",r.nome+" · "+(r.tema||"")+" · "+fmt(r.data)));
+      const acts=el("div","row");
+      if(r.status!=="aprovado")acts.appendChild(btn("Aprovar","",async()=>{await call("moderarConselho",{id:r.id,status:"aprovado"});await recarregar()}));
+      if(r.status!=="recusado")acts.appendChild(btn("Esconder","g",async()=>{await call("moderarConselho",{id:r.id,status:"recusado"});await recarregar()}));
+      acts.appendChild(btn("Apagar","r",async()=>{if(confirm("Apagar de vez?")){await call("moderarConselho",{id:r.id,status:"apagar"});await recarregar()}}));
+      d.append(t,acts);c.appendChild(d);
+    });
+    v.appendChild(c);
+  }
+  if(aba==="capsula"){
+    const c=el("div","card");
+    c.appendChild(el("p","muted","As mensagens estão lacradas até o primeiro aniversário da casa. Aqui vocês só veem quem escreveu, pra não estragar a surpresa."));
+    c.appendChild(tabela(["Quando","Quem",""],(dados.capsula||[]).map(m=>[fmt(m.data),m.nome,btn("Apagar","r",async()=>{if(confirm("Apagar essa mensagem sem ler?")){await call("apagarCapsula",{id:m.id});await recarregar()}})])));
+    v.appendChild(c);
+  }
+  if(aba==="lembretes"){
+    const conf={};dados.confirmacoes.forEach(r=>{conf[String(r.telefone).replace(/\D/g,"")||r.nome]=r});
+    const vao=Object.values(conf).filter(r=>r.vai==="sim");
+    const semResp=dados.convidados.filter(g=>!g.status);
+    const ev=C.evento||{};
+    const quando=ev.data?new Date(ev.data).toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"}):"(data)";
+    const c1=el("div","card");c1.appendChild(el("h3","","Lembrete pra quem confirmou ("+vao.length+")"));
+    c1.appendChild(el("p","muted","Toque em cada um: o WhatsApp abre com a mensagem pronta, é só enviar."));
+    c1.appendChild(tabela(["Nome","Telefone",""],vao.map(r=>[r.nome,r.telefone,a("Enviar lembrete",zap(r.telefone,"Oi, "+String(r.nome).split(" ")[0]+"! Passando pra lembrar do nosso chá de casa nova: "+quando+(ev.horario?", "+ev.horario:"")+". Endereço e mapa: "+site()+"/#jantar . Te esperamos! "+nomeCasal()))])));
+    const c2=el("div","card");c2.appendChild(el("h3","","Ainda não responderam ("+semResp.length+")"));
+    c2.appendChild(tabela(["Nome","Telefone",""],semResp.map(g=>[g.nome,g.telefone,a("Cutucar",zap(g.telefone,"Oi, "+String(g.nome).split(" ")[0]+"! Você vem no nosso chá de casa nova? Confirma pra gente por aqui: "+link(g.codigo)))])));
+    const c3=el("div","card");c3.appendChild(el("h3","","Agradecimentos"));
+    c3.appendChild(el("p","muted","Pra quem deu presente."));
+    c3.appendChild(tabela(["Nome","Presente",""],dados.presentes.filter(p=>p.reservado_por).map(p=>[p.reservado_por,p.nome,p.telefone?a("Agradecer",zap(p.telefone,"Oi, "+String(p.reservado_por).split(" ")[0]+"! Muito obrigado pelo presente ("+p.nome+"). Vai deixar nossa casa ainda mais nossa! "+nomeCasal())):el("span","muted","sem telefone")])));
+    v.append(c1,c2,c3);
+  }
+}
+})();
+</script>
+</body>
+</html>

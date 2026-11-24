@@ -1,0 +1,87 @@
+id,tipo,nome,descricao,valor,link,reservado_por,telefone,reservado_em,cliques_pix,link_cartao,categoria
+p1,item,Jogo de panelas antiaderente,"5 peças, pro dia a dia",450,,,,,0,,Cozinha
+p2,item,Panela de pressão,"4,5 litros, pro feijão de toda semana",180,,,,,0,,Cozinha
+p3,item,Frigideira grande,"Antiaderente, 28 cm",120,,,,,0,,Cozinha
+p4,item,Jogo de facas,Com cepo,180,,,,,0,,Cozinha
+p5,item,Tábuas de corte,Kit de bambu,80,,,,,0,,Cozinha
+p6,item,Kit utensílios de silicone,"Espátulas, conchas e pegadores",110,,,,,0,,Cozinha
+p7,item,Potes herméticos,Kit de vidro pra organizar a despensa,150,,,,,0,,Cozinha
+p8,item,Refratários de vidro,"Kit com tampa, do forno pra mesa",130,,,,,0,,Cozinha
+p9,item,Formas de bolo e pudim,Pro bolo de domingo,90,,,,,0,,Cozinha
+p10,item,Escorredor de louça,"Inox, de bancada",120,,,,,0,,Cozinha
+p11,item,Lixeira de cozinha,"Inox, com pedal",140,,,,,0,,Cozinha
+p12,item,Garrafa térmica,Pro café passado ficar quentinho,90,,,,,0,,Cozinha
+p13,item,Porta-temperos giratório,Com potes,80,,,,,0,,Cozinha
+p14,item,Panos de prato,Kit com 6,60,,,,,0,,Cozinha
+p15,item,"Kit ralador, peneiras e escorredor",O básico que ninguém lembra de comprar,70,,,,,0,,Cozinha
+p16,item,Air fryer,Pra batata frita sem culpa,400,,,,,0,,Eletros
+p17,item,Micro-ondas,Pra esquentar a marmita,650,,,,,0,,Eletros
+p18,item,Liquidificador,Pra vitamina de domingo,200,,,,,0,,Eletros
+p19,item,Batedeira,Pra bolo de aniversário,300,,,,,0,,Eletros
+p20,item,Cafeteira elétrica,Café é item de primeira necessidade,200,,,,,0,,Eletros
+p21,item,Panela elétrica de arroz,Arroz soltinho sem vigiar o fogão,180,,,,,0,,Eletros
+p22,item,Sanduicheira e grill,Pro misto quente da madrugada,150,,,,,0,,Eletros
+p23,item,Mixer de mão,Com copo e batedor,180,,,,,0,,Eletros
+p24,item,Processador de alimentos,"Pica, rala e fatia",300,,,,,0,,Eletros
+p25,item,Chaleira elétrica,Pro chá e pro café coado,140,,,,,0,,Eletros
+p26,item,Purificador de água,Água gelada direto da torneira,700,,,,,0,,Eletros
+p27,item,Aspirador de pó vertical,Pra casa ficar brilhando,450,,,,,0,,Eletros
+p28,item,Robô aspirador,O sonho de qualquer casa,1200,,,,,0,,Eletros
+p29,item,Ferro de passar,A vapor,180,,,,,0,,Eletros
+p30,item,Ventilador de coluna,Pro calor de BH,250,,,,,0,,Eletros
+p31,item,Aparelho de jantar,20 peças,350,,,,,0,,Mesa posta
+p32,item,Faqueiro,"24 peças, inox",200,,,,,0,,Mesa posta
+p33,item,Jogo de taças,6 taças de vinho,160,,,,,0,,Mesa posta
+p34,item,Jogo de copos,12 copos de vidro,90,,,,,0,,Mesa posta
+p35,item,Jogo de xícaras,6 xícaras de café com pires,80,,,,,0,,Mesa posta
+p36,item,Jogo americano e guardanapos,6 lugares,100,,,,,0,,Mesa posta
+p37,item,Travessas de servir,Kit pra receber a família,150,,,,,0,,Mesa posta
+p38,item,Toalha de mesa,8 lugares,120,,,,,0,,Mesa posta
+p39,item,Jarra de vidro,Pro suco do almoço,60,,,,,0,,Mesa posta
+p40,item,Tábua de frios,Pro queijo e vinho com os amigos,120,,,,,0,,Mesa posta
+p41,item,Jogo de cama queen,Percal 200 fios,280,,,,,0,,Quarto
+p42,item,Segundo jogo de cama,Pra dia de lavar o outro,250,,,,,0,,Quarto
+p43,item,Edredom queen,Pras noites frias de Minas,300,,,,,0,,Quarto
+p44,item,Travesseiros,"Par, viscoelástico",250,,,,,0,,Quarto
+p45,item,Protetor de colchão,Impermeável,150,,,,,0,,Quarto
+p46,item,Manta pra cama,Pro pé da cama ficar bonito,180,,,,,0,,Quarto
+p47,item,Cabides,"Kit com 50, de veludo",80,,,,,0,,Quarto
+p48,item,Organizadores de armário,Colmeias e caixas,90,,,,,0,,Quarto
+p49,item,Abajur,Luz quentinha pra ler antes de dormir,150,,,,,0,,Quarto
+p50,item,Jogo de toalhas,"4 peças, banho e rosto",200,,,,,0,,Banheiro
+p51,item,Toalhas de lavabo,Pras visitas,80,,,,,0,,Banheiro
+p52,item,Tapetes de banheiro,"Kit com 2, antiderrapante",80,,,,,0,,Banheiro
+p53,item,Kit acessórios de bancada,"Saboneteira, porta-escovas e dispenser",120,,,,,0,,Banheiro
+p54,item,Cesto de roupa suja,Com tampa,120,,,,,0,,Banheiro
+p55,item,Tapete pra sala,"Neutro, 2 x 1,5 m",400,,,,,0,,Sala
+p56,item,Almofadas,"Kit com 4, capas e enchimento",150,,,,,0,,Sala
+p57,item,Manta pro sofá,Pro filme de domingo,120,,,,,0,,Sala
+p58,item,Cortina,Pra janela da sala,300,,,,,0,,Sala
+p59,item,Luminária de chão,Pro cantinho da leitura,280,,,,,0,,Sala
+p60,item,Espelho decorativo,Pra sala parecer ainda maior,350,,,,,0,,Sala
+p61,item,Porta-retratos,"Kit com 3, pras nossas fotos",80,,,,,0,,Sala
+p62,item,Vasos decorativos,Pra estante e a mesa,100,,,,,0,,Sala
+p63,item,Caixa de som bluetooth,Pra música nunca faltar,400,,,,,0,,Sala
+p64,item,Varal de chão,Retrátil,150,,,,,0,,Limpeza e lavanderia
+p65,item,Tábua de passar,Com suporte pro ferro,180,,,,,0,,Limpeza e lavanderia
+p66,item,Balde com mop giratório,Limpeza sem esforço,120,,,,,0,,Limpeza e lavanderia
+p67,item,"Kit vassoura, rodo e pá",O começo de tudo,80,,,,,0,,Limpeza e lavanderia
+p68,item,Lixeiras pra casa,Kit com 3,120,,,,,0,,Limpeza e lavanderia
+p69,item,Escada dobrável,"3 degraus, pra trocar lâmpada",200,,,,,0,,Limpeza e lavanderia
+p70,item,Caixa de ferramentas,Pra pendurar os quadros,150,,,,,0,,Limpeza e lavanderia
+p71,item,Kit churrasco,"Faca, garfo e pegador",150,,,,,0,,Terraço
+p72,item,Tábua de carne,"Grande, de madeira",100,,,,,0,,Terraço
+p73,item,Cooler,Pra cerveja estar sempre gelada,200,,,,,0,,Terraço
+p74,item,Copos de chopp,Kit com 6,90,,,,,0,,Terraço
+p75,item,Cordão de luz,Pras noites no terraço,90,,,,,0,,Terraço
+p76,item,Par de cadeiras de área externa,Pro pôr do sol lá em cima,600,,,,,0,,Terraço
+p77,item,Rede,Pra preguiça de domingo,180,,,,,0,,Terraço
+p78,item,Vasos grandes,Pras plantas do terraço,150,,,,,0,,Terraço
+c79,cota,Primeira compra do mercado,Pra encher a despensa,100,,,,,0,,
+c80,cota,Jantar a dois,Pra comemorar a casa nova,150,,,,,0,,
+c81,cota,Plantas pra casa,Verde em todos os cômodos,60,,,,,0,,
+c82,cota,Quadro pra sala,Pra parede ganhar personalidade,120,,,,,0,,
+c83,cota,Ingresso pro Galo,Programa de casal garantido,80,,,,,0,,
+c84,cota,Viagem pro casal,Pra próxima aventura a dois,200,,,,,0,,
+c85,cota,Primeira pizza na casa nova,Pra estrear a mesa,60,,,,,0,,
+c86,cota,Móveis do terraço,Pra lá em cima ficar pronto pra receber,250,,,,,0,,
