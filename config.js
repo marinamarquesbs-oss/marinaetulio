@@ -50,7 +50,7 @@ window.CASA = {
     paragrafos: [
       "Antes de contar a nossa história, a gente precisa agradecer a quem escreveu cada capítulo dela.",
       "Obrigado, Deus, por ter cruzado os nossos caminhos quando a gente menos esperava, por cuidar de cada detalhe e por nos dar muito mais do que um dia pedimos. Essa casa é fruto da Sua bondade, de muito trabalho e de muita fé.",
-      "E obrigado, Nossa Senhora, nossa mãe, por passar à frente de cada passo nosso, por interceder por nós nos dias difíceis e por cobrir esse sonho com o Seu manto. Foi de mãos dadas com a senhora que a gente chegou até aqui.",
+      "E obrigado, Nossa Senhora Aparecida, nossa mãe, por passar à frente de cada passo nosso, por interceder por nós nos dias difíceis e por cobrir esse sonho com o Seu manto. Foi de mãos dadas com a senhora que a gente chegou até aqui.",
       "Aos nossos pais, Shirlene e Wanderson, Iranã e Francisco: antes de existir essa casa, existiram vocês. Vocês foram a nossa primeira casa, o primeiro colo, o abraço que esperava a gente depois de um dia difícil. Abriram mão de tantos sonhos pra que os nossos coubessem no mundo, e oraram por nós em tantas noites que a gente nem ficou sabendo.",
       "Cada parede daqui carrega um pouquinho do que vocês plantaram: a fé, o cuidado, o jeito de receber bem quem chega. Se hoje a gente tem coragem de começar um lar, é porque aprendeu com vocês o que é amor de verdade. Obrigado por tudo, por tanto e por sempre. Essa casa também é de vocês, e aqui sempre vai ter lugar à mesa, café passado e um abraço apertado esperando.",
       "Obrigado também à nossa família e aos amigos que torceram, ajudaram e vibraram com cada conquista. Vocês fazem parte de cada tijolo dessa história.",

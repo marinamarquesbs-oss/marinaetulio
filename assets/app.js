@@ -139,7 +139,7 @@
       g.paragrafos.forEach(p => {
         // Deus e Nossa Senhora em destaque: parágrafo maior e os nomes em negrito
         const par = el("p");
-        p.split(/(Deus|Nossa Senhora)/).forEach(pedaco => par.appendChild(/^(Deus|Nossa Senhora)$/.test(pedaco) ? el("strong", "", pedaco) : document.createTextNode(pedaco)));
+        p.split(/(Deus|Nossa Senhora Aparecida|Nossa Senhora)/).forEach(pedaco => par.appendChild(/^(Deus|Nossa Senhora Aparecida|Nossa Senhora)$/.test(pedaco) ? el("strong", "", pedaco) : document.createTextNode(pedaco)));
         if (/^Obrigado, Deus/.test(p)) { par.className = "grat-deus grat-destaque"; par.insertAdjacentHTML("afterbegin", '<svg class="grat-mini-cruz" viewBox="0 0 12 16" aria-hidden="true"><path d="M6 1v14M2 5h8"/></svg>'); }
         if (/Nossa Senhora/.test(p)) { par.className = "grat-maria grat-destaque"; par.insertAdjacentHTML("afterbegin", '<svg class="grat-estrelas" viewBox="0 0 64 12" aria-hidden="true"><path d="M8 2l1.2 3 3 .2-2.3 2 .8 3L8 8.6 5.3 10.2l.8-3-2.3-2 3-.2zM32 2l1.2 3 3 .2-2.3 2 .8 3L32 8.6l-2.7 1.6.8-3-2.3-2 3-.2zM56 2l1.2 3 3 .2-2.3 2 .8 3L56 8.6l-2.7 1.6.8-3-2.3-2 3-.2z"/></svg>'); }
         if (/^Aos nossos pais/.test(p) && (g.pais || []).length) {
