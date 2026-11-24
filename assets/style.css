@@ -116,7 +116,7 @@ h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
 .cap-txt h3{font:400 clamp(30px,4vw,46px)/1.05 var(--display);margin:0 0 6px;text-wrap:balance}
 .cap-quando{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);margin:0 0 18px}
 .cap-txt p.t{font-size:18px;margin:0}
-.cap-txt p.t::first-letter{font:400 3.1em/.8 var(--display);float:left;margin:.08em .1em 0 0;color:var(--ameixa)}
+.cap-txt p.t::first-letter{font:500 3.1em/.8 var(--display);font-optical-sizing:none;font-variation-settings:"opsz" 6;float:left;margin:.08em .1em 0 0;color:var(--ameixa)}
 .cap{opacity:1;transform:none;transition:opacity .8s, transform .8s}
 .js .cap.pre{opacity:.001;transform:translateY(24px)}
 @media (prefers-reduced-motion:reduce){.js .cap.pre{opacity:1;transform:none}}
