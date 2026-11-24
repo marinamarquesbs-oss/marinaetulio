@@ -440,3 +440,25 @@ dialog.obrigado-dlg h3{font-size:40px;line-height:1.05;margin-bottom:14px}
 
 .lista-aberta{max-width:58ch;margin:18px 0 0;padding:14px 18px;border-left:3px solid var(--laranja);background:var(--papel);border-radius:0 12px 12px 0;font-size:15px;color:var(--tinta)}
 .lista-aberta strong{color:var(--vermelho)}
+
+/* ---------- Porta trancada: só a porta na tela ---------- */
+body.trancada{overflow:hidden}
+body.trancada .door-stage{min-height:100vh;min-height:100svh;height:100vh;height:100svh}
+body.trancada .musica,body.trancada .demo-flag{display:none!important}
+
+/* ---------- Planta como cômodo interativo ---------- */
+.planta-sec{background:var(--papel)}
+.planta-sec .planta{position:static;background:transparent;backdrop-filter:none;border:0;box-shadow:none;padding:0;border-radius:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px)}
+.planta-sec .andares,.planta-sec .planta-chips{display:none!important}
+.planta-sec .andar{margin:0;background:var(--porcelana);border:1px solid var(--linha);border-radius:var(--r);padding:clamp(14px,2.5vw,28px)}
+.planta-sec .andar figcaption{font:400 clamp(22px,2.6vw,30px)/1 var(--display);margin:0 0 16px}
+.planta-sec .planta svg{width:100%;height:auto}
+.planta-sec .planta svg a{cursor:pointer}
+.planta-sec .planta svg a:hover rect,.planta-sec .planta svg a:hover path:not(.degraus){fill:var(--manteiga)}
+.planta-sec .planta svg a:focus-visible{outline:none}
+.planta-sec .planta svg a:focus-visible rect{stroke:var(--vermelho);stroke-width:2}
+@media (max-width:860px){
+  .planta-sec .planta{grid-template-columns:1fr}
+  .planta-sec .planta svg{display:block}
+}
+@media (max-width:860px){.musica{bottom:calc(18px + env(safe-area-inset-bottom,0px))}}

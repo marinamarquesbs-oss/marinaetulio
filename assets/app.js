@@ -83,8 +83,10 @@
     const stage = $("#doorStage");
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     let opened = false;
+    document.body.classList.add("trancada");
     function open() {
       if (opened) return; opened = true;
+      document.body.classList.remove("trancada");
       if (reduce) { stage.classList.add("open", "gone"); return; }
       stage.classList.add("turning");
       setTimeout(() => stage.classList.add("open"), 650);
@@ -580,18 +582,8 @@
   /* ---------------- planta ativa ---------------- */
   function initPlanta() {
     const links = document.querySelectorAll(".planta [data-room]");
-    const CIMA = ["terraco", "conselhos", "album"];
-    const andar = n => {
-      document.querySelectorAll(".planta svg[data-planta]").forEach(sv => sv.toggleAttribute("hidden", sv.dataset.planta !== String(n)));
-      document.querySelectorAll(".andares button").forEach(b => b.setAttribute("aria-selected", b.dataset.andar === String(n) ? "true" : "false"));
-    };
-    document.querySelectorAll(".andares button").forEach(b => b.addEventListener("click", () => andar(b.dataset.andar)));
-    const set = id => {
-      links.forEach(a => a.classList.toggle("on", a.dataset.room === id));
-      andar(CIMA.includes(id) ? 2 : 1);
-      const chip = document.querySelector('.planta-chips a.on');
-      if (chip && chip.scrollIntoView && innerWidth <= 860) chip.parentNode.scrollTo({ left: chip.offsetLeft - 12, behavior: "smooth" });
-    };
+    // A planta agora é um cômodo do site: os dois andares aparecem lado a lado e marcam o último cômodo visitado.
+    const set = () => {};
     const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && set(e.target.dataset.room)), { rootMargin: "-45% 0px -50% 0px" });
     document.querySelectorAll("section.room").forEach(s => io.observe(s));
     set("entrada");

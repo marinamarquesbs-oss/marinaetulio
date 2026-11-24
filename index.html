@@ -12,47 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Pinyon+Script&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-
-<!-- PLANTA (navegação): a casa duplex de verdade, 2º pavimento e terraço -->
-<nav class="planta" id="planta" aria-label="Planta da casa">
-  <div class="andares" role="tablist" aria-label="Andar">
-    <button type="button" role="tab" aria-selected="true" data-andar="1" id="andar-1">Casa</button>
-    <button type="button" role="tab" aria-selected="false" data-andar="2" id="andar-2">Terraço</button>
-  </div>
-  <svg viewBox="0 0 200 150" role="img" aria-labelledby="planta-t1" data-planta="1">
-    <title id="planta-t1">Planta do andar da casa: clique num cômodo para ir até ele</title>
-    <rect class="parede" x="1.5" y="1.5" width="197" height="147"/>
-    <g class="fixo"><rect x="1.5" y="1.5" width="76" height="30"/><text x="39" y="20">Banho</text></g>
-    <g class="fixo"><rect x="1.5" y="31.5" width="76" height="58"/><text x="39" y="57">Nosso</text><text x="39" y="68">quarto</text></g>
-    <a href="#cozinha" data-room="cozinha"><rect x="1.5" y="89.5" width="76" height="59"/><text x="34" y="122">Cozinha</text></a>
-    <a href="#geladeira" data-room="geladeira" class="gel"><rect x="60" y="92" width="15" height="22" rx="2"/><text x="67.5" y="106" class="mini">♥</text></a>
-    <a href="#jantar" data-room="jantar"><rect x="77.5" y="40" width="40" height="70"/><circle class="mesa" cx="97.5" cy="75" r="9"/><text x="97.5" y="100">Jantar</text></a>
-    <a href="#quarto" data-room="quarto"><rect x="107.5" y="1.5" width="91" height="56"/><text x="153" y="26">Quarto de</text><text x="153" y="37">hóspedes</text></a>
-    <a href="#sala" data-room="sala"><rect x="117.5" y="57.5" width="81" height="58"/><text x="158" y="90">Sala</text></a>
-    <a href="#entrada" data-room="entrada"><rect x="117.5" y="115.5" width="81" height="33"/><path class="degraus" d="M127 116v32M137 116v32M147 116v32M157 116v32M167 116v32M177 116v32M187 116v32"/><text x="158" y="135" class="sobre">Entrada</text></a>
-  </svg>
-  <svg viewBox="0 0 200 150" role="img" aria-labelledby="planta-t2" data-planta="2" hidden>
-    <title id="planta-t2">Planta do terraço: clique num cômodo para ir até ele</title>
-    <rect class="parede" x="1.5" y="1.5" width="197" height="147"/>
-    <a href="#terraco" data-room="terraco"><path d="M1.5 1.5H198.5V82H122V108H1.5Z"/><rect class="mesa" x="95" y="12" width="26" height="9"/><circle class="mesa" cx="70" cy="40" r="8"/><text x="60" y="66">Cápsula do tempo</text><text x="60" y="76" class="sub-t">terraço</text></a>
-    <g class="fixo"><rect x="1.5" y="108" width="34" height="40.5"/><text x="18.5" y="131">WC</text></g>
-    <a href="#album" data-room="album"><rect x="35.5" y="108" width="62" height="40.5"/><text x="66.5" y="127">Sala</text><text x="66.5" y="137">de TV</text></a>
-    <a href="#conselhos" data-room="conselhos"><rect x="122" y="82" width="76.5" height="38"/><text x="160" y="99">Conselhos</text><text x="160" y="109" class="sub-t">quarto 3</text></a>
-    <a href="#entrada" data-room="entrada"><rect x="122" y="120" width="76.5" height="28.5"/><path class="degraus" d="M132 120v28M142 120v28M152 120v28M162 120v28M172 120v28M182 120v28M192 120v28"/><text x="160" y="138" class="sobre">Escada</text></a>
-  </svg>
-  <div class="planta-chips" role="list">
-    <a href="#entrada" data-room="entrada" role="listitem">Entrada</a>
-    <a href="#sala" data-room="sala" role="listitem">Nossa história</a>
-    <a href="#jantar" data-room="jantar" role="listitem">O almoço</a>
-    <a href="#cozinha" data-room="cozinha" role="listitem">Presentes</a>
-    <a href="#geladeira" data-room="geladeira" role="listitem">Recados</a>
-    <a href="#quarto" data-room="quarto" role="listitem">Confirmar</a>
-    <a href="#terraco" data-room="terraco" role="listitem">Cápsula do tempo</a>
-    <a href="#conselhos" data-room="conselhos" role="listitem">Conselhos</a>
-    <a href="#album" data-room="album" role="listitem">Álbum</a>
-  </div>
-</nav>
+<body class="trancada">
 
 <button class="musica" id="musica" type="button" hidden aria-pressed="false">
   <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Tocar música</span>
@@ -82,6 +42,55 @@
     <button class="door-open" id="doorOpen" type="button">Toque no cadeado pra entrar ♪</button>
   </div>
 </section>
+
+<!-- PLANTA: mapa interativo da casa, logo depois da porta -->
+<section class="room planta-sec" id="planta-casa" data-room="planta">
+  <header class="room-head">
+    <p class="room-tag">Antes de tudo · A planta</p>
+    <h2>Conheça a casa</h2>
+    <p class="room-lead">Cada parte do site é um cômodo da nossa casa nova. Toque num cômodo pra entrar nele. O nosso quarto e o banheiro ficam trancados, claro.</p>
+  </header>
+<!-- PLANTA (navegação): a casa duplex de verdade, 2º pavimento e terraço -->
+<nav class="planta" id="planta" aria-label="Planta da casa">
+  <div class="andares" role="tablist" aria-label="Andar">
+    <button type="button" role="tab" aria-selected="true" data-andar="1" id="andar-1">Casa</button>
+    <button type="button" role="tab" aria-selected="false" data-andar="2" id="andar-2">Terraço</button>
+  </div>
+  <figure class="andar"><figcaption>Casa</figcaption><svg viewBox="0 0 200 150" role="img" aria-labelledby="planta-t1" data-planta="1">
+    <title id="planta-t1">Planta do andar da casa: clique num cômodo para ir até ele</title>
+    <rect class="parede" x="1.5" y="1.5" width="197" height="147"/>
+    <g class="fixo"><rect x="1.5" y="1.5" width="76" height="30"/><text x="39" y="20">Banho</text></g>
+    <g class="fixo"><rect x="1.5" y="31.5" width="76" height="58"/><text x="39" y="57">Nosso</text><text x="39" y="68">quarto</text></g>
+    <a href="#cozinha" data-room="cozinha"><rect x="1.5" y="89.5" width="76" height="59"/><text x="34" y="122">Cozinha</text></a>
+    <a href="#geladeira" data-room="geladeira" class="gel"><rect x="60" y="92" width="15" height="22" rx="2"/><text x="67.5" y="106" class="mini">♥</text></a>
+    <a href="#jantar" data-room="jantar"><rect x="77.5" y="40" width="40" height="70"/><circle class="mesa" cx="97.5" cy="75" r="9"/><text x="97.5" y="100">Jantar</text></a>
+    <a href="#quarto" data-room="quarto"><rect x="107.5" y="1.5" width="91" height="56"/><text x="153" y="26">Quarto de</text><text x="153" y="37">hóspedes</text></a>
+    <a href="#sala" data-room="sala"><rect x="117.5" y="57.5" width="81" height="58"/><text x="158" y="90">Sala</text></a>
+    <a href="#entrada" data-room="entrada"><rect x="117.5" y="115.5" width="81" height="33"/><path class="degraus" d="M127 116v32M137 116v32M147 116v32M157 116v32M167 116v32M177 116v32M187 116v32"/><text x="158" y="135" class="sobre">Entrada</text></a>
+  </svg></figure>
+  <figure class="andar"><figcaption>Terraço</figcaption><svg viewBox="0 0 200 150" role="img" aria-labelledby="planta-t2" data-planta="2">
+    <title id="planta-t2">Planta do terraço: clique num cômodo para ir até ele</title>
+    <rect class="parede" x="1.5" y="1.5" width="197" height="147"/>
+    <a href="#terraco" data-room="terraco"><path d="M1.5 1.5H198.5V82H122V108H1.5Z"/><rect class="mesa" x="95" y="12" width="26" height="9"/><circle class="mesa" cx="70" cy="40" r="8"/><text x="60" y="66">Cápsula do tempo</text><text x="60" y="76" class="sub-t">terraço</text></a>
+    <g class="fixo"><rect x="1.5" y="108" width="34" height="40.5"/><text x="18.5" y="131">WC</text></g>
+    <a href="#album" data-room="album"><rect x="35.5" y="108" width="62" height="40.5"/><text x="66.5" y="127">Sala</text><text x="66.5" y="137">de TV</text></a>
+    <a href="#conselhos" data-room="conselhos"><rect x="122" y="82" width="76.5" height="38"/><text x="160" y="99">Conselhos</text><text x="160" y="109" class="sub-t">quarto 3</text></a>
+    <a href="#entrada" data-room="entrada"><rect x="122" y="120" width="76.5" height="28.5"/><path class="degraus" d="M132 120v28M142 120v28M152 120v28M162 120v28M172 120v28M182 120v28M192 120v28"/><text x="160" y="138" class="sobre">Escada</text></a>
+  </svg></figure>
+  <div class="planta-chips" role="list">
+    <a href="#entrada" data-room="entrada" role="listitem">Entrada</a>
+    <a href="#sala" data-room="sala" role="listitem">Nossa história</a>
+    <a href="#jantar" data-room="jantar" role="listitem">O almoço</a>
+    <a href="#cozinha" data-room="cozinha" role="listitem">Presentes</a>
+    <a href="#geladeira" data-room="geladeira" role="listitem">Recados</a>
+    <a href="#quarto" data-room="quarto" role="listitem">Confirmar</a>
+    <a href="#terraco" data-room="terraco" role="listitem">Cápsula do tempo</a>
+    <a href="#conselhos" data-room="conselhos" role="listitem">Conselhos</a>
+    <a href="#album" data-room="album" role="listitem">Álbum</a>
+  </div>
+</nav>
+</section>
+
 
 <!-- SALA: história -->
 <section class="room sala" id="sala" data-room="sala">
