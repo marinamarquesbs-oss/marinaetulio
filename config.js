@@ -6,7 +6,7 @@ window.CASA = {
   casal: { nome1: "Marina", nome2: "Marco Túlio", monograma: "M & MT" },
 
   // Endereço da planilha/automação (Google Apps Script). Vazio = modo demonstração.
-  API_URL: "",
+  API_URL: "https://script.google.com/macros/s/AKfycbzyvUYm7kRtX5850kUF_1ECZ1W__mBM6CM6gOfpFQXo5Pk_-KuY590gnqCXlGVRXZmRpQ/exec",
 
   evento: {
     data: "2027-02-13T13:00:00-03:00", // [PREENCHER] ex.: "2027-01-23T12:30:00-03:00". Vazio mostra "data em breve".
