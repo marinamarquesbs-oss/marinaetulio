@@ -584,6 +584,12 @@
     const links = document.querySelectorAll(".planta [data-room]");
     // A planta agora é um cômodo do site: os dois andares aparecem lado a lado e marcam o último cômodo visitado.
     const set = () => {};
+    // Botão discreto "Planta": aparece depois que a pessoa passa da planta e leva de volta pra ela.
+    const volta = $("#voltaPlanta"), secP = $("#planta-casa");
+    if (volta && secP) {
+      const ver = () => volta.toggleAttribute("hidden", secP.getBoundingClientRect().bottom > 0);
+      addEventListener("scroll", ver, { passive: true }); ver();
+    }
     const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && set(e.target.dataset.room)), { rootMargin: "-45% 0px -50% 0px" });
     document.querySelectorAll("section.room").forEach(s => io.observe(s));
     set("entrada");

@@ -462,3 +462,8 @@ body.trancada .musica,body.trancada .demo-flag{display:none!important}
   .planta-sec .planta svg{display:block}
 }
 @media (max-width:860px){.musica{bottom:calc(18px + env(safe-area-inset-bottom,0px))}}
+/* botão discreto pra voltar à planta */
+.volta-planta{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;display:flex;align-items:center;gap:8px;background:var(--papel);border:1px solid var(--linha);border-radius:999px;padding:9px 14px 9px 12px;font:600 13px var(--body);color:var(--tinta);text-decoration:none;box-shadow:0 8px 20px -12px rgba(43,33,28,.35);opacity:.92;transition:opacity .2s,transform .2s}
+.volta-planta:hover{opacity:1;transform:translateY(-1px)}
+.volta-planta svg{width:18px;height:18px;fill:none;stroke:var(--vermelho);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+body.trancada .volta-planta{display:none!important}
