@@ -13,7 +13,7 @@ window.CASA = {
     formato: "Almoço",
     horario: "a partir das 13h", // [PREENCHER] ex.: "a partir das 12h30"
     local: "Nossa casa nova",
-    endereco: "Rua Jordânia, 1665, Pedra Azul, Contagem (MG)", // endereço completo (aparece no site)
+    endereco: "Rua Jordânia, 1665, Casa 5, Bloco 1, Pedra Azul, Contagem (MG)", // endereço completo (aparece no site)
     mapsQuery: "Rua Jordânia, 1665, Pedra Azul, Contagem, MG", // texto pra busca no Google Maps (normalmente o endereço)
     brincadeiras: "Claro que tem! Vai ter brincadeira de chá, com prenda, risada e muita torcida. Só pedimos uma coisa: deixa a vergonha do lado de fora da porta.",
     prazoConfirmacao: "2027-02-03" // [PREENCHER] ex.: "2027-01-10". Depois dessa data o formulário fecha.
