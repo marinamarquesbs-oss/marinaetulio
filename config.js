@@ -70,7 +70,7 @@ window.CASA = {
       texto: "Ladeiras, igrejas barrocas e perna doendo. Descobrimos que somos ótimos de viagem e péssimos de subida." },
     { titulo: "Na arquibancada", quando: "", foto: "assets/fotos/arquibancada.jpg",
       texto: "Tem coisa que a gente divide sem discutir: o hambúrguer, o sofá e o Galo. Ganhando ou perdendo, a gente grita junto." },
-    { titulo: "A primeira casa", quando: "", foto: "",
+    { titulo: "A primeira casa", quando: "", foto: "assets/fotos/primeira-casa.jpg",
       texto: "E agora ele existe: nossa primeira casa juntos, nossa de verdade. Só falta encher de gente querida. Ou seja, falta você." }
   ],
 
