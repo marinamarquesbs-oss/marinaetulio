@@ -126,32 +126,57 @@
     const box = $("#capitulos");
     const g = C.gratidao;
     if (g && (g.paragrafos || []).length) {
-      const sec = el("div", "gratidao");
+      const sec = el("div", "grat2");
+      const DESTAQUE = /(Deus|Nossa Senhora Aparecida|Nossa Senhora)/;
+      const rico = (txt, cls) => { const par = el("p", cls || ""); txt.split(DESTAQUE).forEach(x => par.appendChild(/^(Deus|Nossa Senhora Aparecida|Nossa Senhora)$/.test(x) ? el("strong", "", x) : document.createTextNode(x))); return par; };
+      // 1. versículo
       if (g.versiculo) {
-        const v = el("figure", "grat-vers"); v.style.margin = "0";
-        // cruz em traço fino, só um detalhe
-        v.insertAdjacentHTML("afterbegin", '<svg class="grat-cruz" viewBox="0 0 24 40" aria-hidden="true"><path d="M12 1v38M4 11h16"/></svg>');
+        const v = el("figure", "g2-vers");
+        v.insertAdjacentHTML("afterbegin", '<svg class="g2-cruz" viewBox="0 0 24 40" aria-hidden="true"><path d="M12 1v38M4 11h16"/></svg>');
         v.append(el("blockquote", "", "“" + g.versiculo + "”"), el("figcaption", "", g.referencia || ""));
         sec.appendChild(v);
       }
-      const t = el("div", "grat-txt");
-      t.appendChild(el("h3", "", g.titulo || "Gratidão"));
-      g.paragrafos.forEach(p => {
-        // Deus e Nossa Senhora em destaque: parágrafo maior e os nomes em negrito
-        const par = el("p");
-        p.split(/(Deus|Nossa Senhora Aparecida|Nossa Senhora)/).forEach(pedaco => par.appendChild(/^(Deus|Nossa Senhora Aparecida|Nossa Senhora)$/.test(pedaco) ? el("strong", "", pedaco) : document.createTextNode(pedaco)));
-        if (/^Obrigado, Deus/.test(p)) { par.className = "grat-deus grat-destaque"; par.insertAdjacentHTML("afterbegin", '<svg class="grat-mini-cruz" viewBox="0 0 12 16" aria-hidden="true"><path d="M6 1v14M2 5h8"/></svg>'); }
-        if (/Nossa Senhora/.test(p)) { par.className = "grat-maria grat-destaque"; par.insertAdjacentHTML("afterbegin", '<svg class="grat-estrelas" viewBox="0 0 64 12" aria-hidden="true"><path d="M8 2l1.2 3 3 .2-2.3 2 .8 3L8 8.6 5.3 10.2l.8-3-2.3-2 3-.2zM32 2l1.2 3 3 .2-2.3 2 .8 3L32 8.6l-2.7 1.6.8-3-2.3-2 3-.2zM56 2l1.2 3 3 .2-2.3 2 .8 3L56 8.6l-2.7 1.6.8-3-2.3-2 3-.2z"/></svg>'); }
-        if (/^Aos nossos pais/.test(p) && (g.pais || []).length) {
-          par.className = "grat-pais";
-          const nomes = el("p", "grat-nomes");
-          g.pais.forEach((casal, k) => { if (k) nomes.appendChild(el("span", "sep", "·")); nomes.appendChild(el("span", "", casal.join(" & "))); });
-          t.appendChild(nomes);
-        }
-        t.appendChild(par);
+      sec.insertAdjacentHTML("beforeend", '<div class="g2-orn" aria-hidden="true"><span></span><i>♥</i><span></span></div>');
+      // separa os parágrafos por assunto
+      const ps = g.paragrafos.slice(), intro = [], deus = [], maria = [], pais = [], fim = [];
+      let modo = "intro";
+      ps.forEach(p => {
+        if (/^Obrigado, Deus/.test(p)) modo = "deus";
+        else if (/Nossa Senhora/.test(p) && modo !== "pais") modo = "maria";
+        else if (/^Aos nossos pais/.test(p)) modo = "pais";
+        else if (/^Obrigado também/.test(p)) modo = "fim";
+        ({ intro, deus, maria, pais, fim })[modo].push(p);
       });
-      const c = C.casal || {}; t.appendChild(el("p", "grat-assina", (c.nome1 || "") + " & " + (c.nome2 || "")));
-      sec.appendChild(t);
+      // 2. título
+      const topo = el("header", "g2-topo");
+      topo.appendChild(el("h3", "", g.titulo || "Gratidão"));
+      intro.forEach(p => topo.appendChild(el("p", "", p)));
+      sec.appendChild(topo);
+      // 3. Deus e Nossa Senhora, lado a lado
+      if (deus.length || maria.length) {
+        const fe = el("div", "g2-fe");
+        const card = (cls, icone, rotulo, txts) => { if (!txts.length) return; const c = el("div", "g2-card " + cls); c.insertAdjacentHTML("afterbegin", icone); c.appendChild(el("span", "g2-rot", rotulo)); txts.forEach(t => c.appendChild(rico(t))); fe.appendChild(c); };
+        card("g2-deus", '<svg class="g2-ico" viewBox="0 0 12 16" aria-hidden="true"><path d="M6 1v14M2 5h8"/></svg>', "A Deus", deus);
+        card("g2-maria", '<svg class="g2-ico g2-est" viewBox="0 0 64 12" aria-hidden="true"><path d="M8 2l1.2 3 3 .2-2.3 2 .8 3L8 8.6 5.3 10.2l.8-3-2.3-2 3-.2zM32 2l1.2 3 3 .2-2.3 2 .8 3L32 8.6l-2.7 1.6.8-3-2.3-2 3-.2zM56 2l1.2 3 3 .2-2.3 2 .8 3L56 8.6l-2.7 1.6.8-3-2.3-2 3-.2z"/></svg>', "A Nossa Senhora Aparecida", maria);
+        sec.appendChild(fe);
+      }
+      // 4. pais
+      if (pais.length) {
+        const bp = el("div", "g2-pais");
+        bp.appendChild(el("span", "g2-rot", "Aos nossos pais"));
+        if ((g.pais || []).length) {
+          const nomes = el("p", "g2-nomes");
+          g.pais.forEach((casal, k) => { if (k) nomes.appendChild(el("span", "sep", "♥")); nomes.appendChild(el("span", "", casal.join(" & "))); });
+          bp.appendChild(nomes);
+        }
+        pais.forEach(p => bp.appendChild(el("p", "", p.replace(/^Aos nossos pais, [^:]+:\s*/, "").replace(/^./, ch => ch.toUpperCase()))));
+        sec.appendChild(bp);
+      }
+      // 5. fechamento
+      const f = el("div", "g2-fim");
+      fim.forEach(p => f.appendChild(rico(p)));
+      const c = C.casal || {}; f.appendChild(el("p", "g2-assina", (c.nome1 || "") + " & " + (c.nome2 || "")));
+      sec.appendChild(f);
       box.parentNode.insertBefore(sec, box);
     }
     (C.historia || []).forEach((c, i) => {

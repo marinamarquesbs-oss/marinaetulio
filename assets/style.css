@@ -467,3 +467,34 @@ body.trancada .musica,body.trancada .demo-flag{display:none!important}
 .volta-planta:hover{opacity:1;transform:translateY(-1px)}
 .volta-planta svg{width:18px;height:18px;fill:none;stroke:var(--vermelho);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 body.trancada .volta-planta{display:none!important}
+
+/* gratidão: layout de carta, centralizado */
+.grat2{max-width:880px;margin:0 auto 96px;padding:clamp(40px,6vw,72px) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);text-align:center}
+.g2-vers{margin:0 auto;max-width:620px}
+.g2-cruz{width:14px;height:24px;display:block;margin:0 auto 18px;fill:none;stroke:var(--ameixa);stroke-width:1.3;stroke-linecap:round}
+.g2-vers blockquote{margin:0;font:400 italic clamp(24px,3vw,34px)/1.25 var(--display);color:var(--tinta);text-wrap:balance}
+.g2-vers figcaption{margin-top:14px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ameixa)}
+.g2-orn{display:flex;align-items:center;justify-content:center;gap:14px;margin:36px auto}
+.g2-orn span{width:64px;height:1px;background:var(--linha)}
+.g2-orn i{font-style:normal;font-size:12px;color:var(--rosa-forte)}
+.g2-topo h3{font:400 clamp(30px,3.6vw,42px)/1.1 var(--display);margin:0 0 12px}
+.g2-topo p{font-size:17px;color:var(--tinta-2);max-width:46ch;margin:0 auto 40px;text-wrap:balance}
+.g2-fe{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;margin-bottom:48px}
+.g2-card{background:var(--papel);border:1px solid var(--linha);border-top:3px solid var(--ameixa);border-radius:6px;padding:26px 26px 22px}
+.g2-card.g2-maria{border-top-color:var(--oliva)}
+.g2-card p{font:400 18px/1.6 var(--display);color:var(--tinta);margin:0}
+.g2-card strong{font-weight:500;color:var(--ameixa)}
+
+.g2-ico{display:block;width:10px;height:14px;margin-bottom:10px;fill:none;stroke:var(--ameixa);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.g2-ico.g2-est{width:44px;height:9px;stroke:var(--oliva);stroke-width:.9}
+.g2-rot{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--tinta-2);margin-bottom:12px}
+.g2-pais{max-width:640px;margin:0 auto 40px}
+.g2-pais .g2-rot{margin-bottom:6px}
+.g2-nomes{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:4px 16px;margin:0 0 22px;font:400 italic clamp(22px,2.6vw,28px)/1.25 var(--display);color:var(--ameixa)}
+.g2-nomes .sep{font-style:normal;font-size:12px;color:var(--rosa-forte)}
+.g2-pais p:not(.g2-nomes){font-size:17px;line-height:1.75;text-align:left;margin:0 0 16px}
+.g2-fim{max-width:600px;margin:0 auto;padding-top:32px;border-top:1px dashed var(--linha)}
+.g2-fim p{font:400 italic 19px/1.6 var(--display);color:var(--tinta);margin:0 0 14px;text-wrap:pretty}
+.g2-fim strong{font-weight:500;font-style:italic;color:var(--ameixa)}
+.g2-fim .g2-assina{font:400 38px/1 var(--script);color:var(--ameixa);margin:18px 0 0}
+@media (max-width:760px){.g2-nomes{flex-direction:column;gap:2px}.g2-nomes .sep{display:none}.g2-fe{grid-template-columns:1fr}.grat2{margin-bottom:64px}.g2-card{padding:22px 20px 18px}.g2-card p{font-size:17px}}
