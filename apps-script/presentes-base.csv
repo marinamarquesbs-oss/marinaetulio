@@ -12,7 +12,7 @@ p10,item,Escorredor de louça,"Inox, de bancada",120,,,,,0,,Cozinha
 p11,item,Lixeira de cozinha,"Inox, com pedal",140,,,,,0,,Cozinha
 p12,item,Garrafa térmica,Pro café passado ficar quentinho,90,,,,,0,,Cozinha
 p13,item,Porta-temperos giratório,Com potes,80,,,,,0,,Cozinha
-p14,item,Panos de prato,Kit com 6,60,,,,,0,,Cozinha
+p14,item,Panos de prato,Kit com 12,90,,,,,0,,Cozinha
 p15,item,"Kit ralador, peneiras e escorredor",O básico que ninguém lembra de comprar,70,,,,,0,,Cozinha
 p16,item,Air fryer,Pra batata frita sem culpa,400,,,,,0,,Eletros
 p17,item,Micro-ondas,Pra esquentar a marmita,650,,,,,0,,Eletros
@@ -29,14 +29,14 @@ p27,item,Aspirador de pó vertical,Pra casa ficar brilhando,450,,,,,0,,Eletros
 p28,item,Robô aspirador,O sonho de qualquer casa,1200,,,,,0,,Eletros
 p29,item,Ferro de passar,A vapor,180,,,,,0,,Eletros
 p30,item,Ventilador de coluna,Pro calor de BH,250,,,,,0,,Eletros
-p31,item,Aparelho de jantar,20 peças,350,,,,,0,,Mesa posta
-p32,item,Faqueiro,"24 peças, inox",200,,,,,0,,Mesa posta
-p33,item,Jogo de taças,6 taças de vinho,160,,,,,0,,Mesa posta
+p31,item,Aparelho de jantar,"42 peças, 12 lugares",600,,,,,0,,Mesa posta
+p32,item,Faqueiro,"72 peças, 12 lugares, inox",350,,,,,0,,Mesa posta
+p33,item,Jogo de taças,12 taças de vinho,250,,,,,0,,Mesa posta
 p34,item,Jogo de copos,12 copos de vidro,90,,,,,0,,Mesa posta
 p35,item,Jogo de xícaras,6 xícaras de café com pires,80,,,,,0,,Mesa posta
-p36,item,Jogo americano e guardanapos,6 lugares,100,,,,,0,,Mesa posta
+p36,item,Jogo americano,8 lugares,100,,,,,0,,Mesa posta
 p37,item,Travessas de servir,Kit pra receber a família,150,,,,,0,,Mesa posta
-p38,item,Toalha de mesa,8 lugares,120,,,,,0,,Mesa posta
+p38,item,Toalha de mesa,"8 lugares, pro dia a dia",120,,,,,0,,Mesa posta
 p39,item,Jarra de vidro,Pro suco do almoço,60,,,,,0,,Mesa posta
 p40,item,Tábua de frios,Pro queijo e vinho com os amigos,120,,,,,0,,Mesa posta
 p41,item,Jogo de cama queen,Percal 200 fios,280,,,,,0,,Quarto
@@ -45,10 +45,10 @@ p43,item,Edredom queen,Pras noites frias de Minas,300,,,,,0,,Quarto
 p44,item,Travesseiros,"Par, viscoelástico",250,,,,,0,,Quarto
 p45,item,Protetor de colchão,Impermeável,150,,,,,0,,Quarto
 p46,item,Manta pra cama,Pro pé da cama ficar bonito,180,,,,,0,,Quarto
-p47,item,Cabides,"Kit com 50, de veludo",80,,,,,0,,Quarto
+p47,item,Cabides,"Kit com 80, de veludo",110,,,,,0,,Quarto
 p48,item,Organizadores de armário,Colmeias e caixas,90,,,,,0,,Quarto
 p49,item,Abajur,Luz quentinha pra ler antes de dormir,150,,,,,0,,Quarto
-p50,item,Jogo de toalhas,"4 peças, banho e rosto",200,,,,,0,,Banheiro
+p50,item,Jogo de toalhas,6 toalhas de banho e 4 de rosto,350,,,,,0,,Banheiro
 p51,item,Toalhas de lavabo,Pras visitas,80,,,,,0,,Banheiro
 p52,item,Tapetes de banheiro,"Kit com 2, antiderrapante",80,,,,,0,,Banheiro
 p53,item,Kit acessórios de bancada,"Saboneteira, porta-escovas e dispenser",120,,,,,0,,Banheiro
@@ -85,3 +85,11 @@ c83,cota,Ingresso pro Galo,Programa de casal garantido,80,,,,,0,,
 c84,cota,Viagem pro casal,Pra próxima aventura a dois,200,,,,,0,,
 c85,cota,Primeira pizza na casa nova,Pra estrear a mesa,60,,,,,0,,
 c86,cota,Móveis do terraço,Pra lá em cima ficar pronto pra receber,250,,,,,0,,
+p87,item,Terceiro jogo de cama queen,Reserva pra nunca faltar,250,,,,,0,,Quarto
+p88,item,Jogo de cama de solteiro,Pro quarto de hóspedes,150,,,,,0,,Quarto
+p89,item,Travesseiros pras visitas,Par,150,,,,,0,,Quarto
+p90,item,Toalhas pras visitas,2 de banho e 2 de rosto,120,,,,,0,,Banheiro
+p91,item,Canecas,"Kit com 6, pro café da manhã",80,,,,,0,,Mesa posta
+p92,item,Guardanapos de pano,12 unidades,70,,,,,0,,Mesa posta
+p93,item,Toalha de mesa de festa,Pra receber a família toda,150,,,,,0,,Mesa posta
+p94,item,Pregadores,"Pacote com 24, de madeira",30,,,,,0,,Limpeza e lavanderia
